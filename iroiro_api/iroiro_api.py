@@ -25,19 +25,23 @@ Sending a GET request to 'http://127.0.0.1:8000/login' will call the @app.get("/
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
-  
+
+
 @app.get('/login')
 async def login():
     return {"login page": "welcome to the login page"}
-  
+
+
 @app.get('/gallery')
 async def gallery():
-    return {"the gallery" : "here you can see photos uploaded by all users"}
-  
+    return {"the gallery": "here you can see photos uploaded by all users"}
+
+
 @app.get('/upload')
 async def upload():
     return {"upload page": "Here you can upload new photos once logged in"}
-  
+
+
 @app.get('/mypage')
 async def mypage():
     return {"mypage": "Here you view all photos you have uploaded"}
