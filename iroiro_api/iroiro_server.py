@@ -9,7 +9,7 @@ from fastapi import FastAPI, UploadFile
 
 from fastapi.middleware.cors import CORSMiddleware
 
-S3_BUCKET_NAME = "test-photos-123"
+S3_BUCKET_NAME = "iro-bucket"
 
 
 class PhotoModel(BaseModel):
@@ -38,7 +38,7 @@ async def check_status():
 async def get_all_photos():
     # Connect to our database
     conn = psycopg2.connect(
-        database="exampledb", user="docker", password="docker", host="0.0.0.0"
+        database="irodb", user="docker", password="docker", host="0.0.0.0"
     )
     cur = conn.cursor()
     cur.execute("SELECT * FROM photo ORDER BY id DESC")
@@ -59,7 +59,7 @@ async def get_all_photos():
 
 @app.post("/photos", status_code=201)
 async def add_photo(file: UploadFile):
-    print("Create endpoint hit!!")
+    print("Endpoint hit!!")
     print(file.filename)
     print(file.content_type)
 
