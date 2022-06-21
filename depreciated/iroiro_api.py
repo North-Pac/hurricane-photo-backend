@@ -27,9 +27,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-c
-
-
 @app.get('/gallery')
 async def gallery():
     return {"the gallery": "here you can see photos uploaded by all users"}
