@@ -27,9 +27,7 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.get('/login')
-async def login():
-    return {"login page": "welcome to the login page"}
+c
 
 
 @app.get('/gallery')
