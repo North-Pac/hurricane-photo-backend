@@ -1,17 +1,15 @@
 import boto3
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 import psycopg2
 import os
 from typing import List
 from pydantic import BaseModel
-
 import uvicorn
 from fastapi import FastAPI, UploadFile
-
 from fastapi.middleware.cors import CORSMiddleware
 
-
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+s3 = boto3.resource('s3')
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 S3_BUCKET_NAME = "iro-bucket"
 
 
