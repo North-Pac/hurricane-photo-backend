@@ -16,7 +16,7 @@ class PhotoModel(BaseModel):
     id: int
     photo_name: str
     photo_url: str
-    is_deleted: bool
+    
 
 
 app = FastAPI(debug=True)
@@ -48,7 +48,7 @@ async def get_all_photos():
     for row in rows:
         formatted_photos.append(
             PhotoModel(
-                id=row[0], photo_name=row[1], photo_url=row[2], is_deleted=row[3]
+                id=row[0], photo_name=row[1], photo_url=row[2]
             )
         )
 
@@ -72,7 +72,7 @@ async def add_photo(file: UploadFile):
 
     # Store URL in database
     conn = psycopg2.connect(
-        database="exampledb", user="docker", password="docker", host="0.0.0.0"
+        database="irodb", user="docker", password="docker", host="0.0.0.0"
     )
     cur = conn.cursor()
     cur.execute(
