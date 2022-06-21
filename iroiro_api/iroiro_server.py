@@ -34,6 +34,11 @@ async def check_status():
     return "Hello World!"
 
 
+@app.get('/login')
+async def login():
+    return {"login page": "welcome to the login page"}
+
+
 @app.get("/photos", response_model=List[PhotoModel])
 async def get_all_photos():
     # Connect to our database
@@ -66,7 +71,8 @@ async def add_photo(file: UploadFile):
     # Upload file to AWS S3
     s3 = boto3.resource("s3")
     bucket = s3.Bucket(S3_BUCKET_NAME)
-    bucket.upload_fileobj(file.file, file.filename, ExtraArgs={"ACL": "public-read"})
+    bucket.upload_fileobj(file.file, file.filename,
+                          ExtraArgs={"ACL": "public-read"})
 
     uploaded_file_url = f"https://{S3_BUCKET_NAME}.s3.amazonaws.com/{file.filename}"
 
