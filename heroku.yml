@@ -4,4 +4,4 @@ build:
 release:
   image: web
 run:
-  web: uvicorn iroiro_server:app --reload
+  web: uvicorn iroiro_server:app --reload --port $PORT
