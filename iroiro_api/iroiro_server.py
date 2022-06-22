@@ -9,6 +9,8 @@ from fastapi import FastAPI, UploadFile
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from colorizer_app import Colorizer
+
 S3_BUCKET_NAME = "iro-bucket"
 
 
@@ -34,7 +36,7 @@ async def check_status():
     return "Hello World!"
 
 
-@app.get("/photos", response_model=List[PhotoModel])
+@app.get("/photos", response_model=List[PhotoModel])##consider calling the colorizer here
 async def get_all_photos():
     # Connect to our database
     conn = psycopg2.connect(
@@ -58,7 +60,7 @@ async def get_all_photos():
 
 
 @app.post("/photos", status_code=201)
-async def add_photo(file: UploadFile):
+async def add_photo(file: UploadFile):## consider calling the colorizer here before the post occurs
     print("Endpoint hit!!")
     print(file.filename)
     print(file.content_type)
